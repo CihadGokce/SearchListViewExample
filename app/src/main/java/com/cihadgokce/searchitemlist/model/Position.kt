@@ -4,18 +4,17 @@ import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Position (
+data class Position(
 
     var id: Int? = null,
-    var positions : ArrayList<PositionItem> = arrayListOf()
+    var positions: ArrayList<PositionItem> = arrayListOf()
 
-    ) : BaseResponseModel()
+) : BaseResponseModel()
 
 
 @JsonClass(generateAdapter = true)
-data class PositionItem (
-
-    @SerializedName("posX" ) var posX : Double? = null,
-    @SerializedName("posY" ) var posY : Double? = null
+data class PositionItem(
+    var posX: Double? = null,
+    var posY: Double? = null
 
 ) : BaseResponseModel()

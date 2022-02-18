@@ -4,8 +4,8 @@
 
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:name=".core.BaseApplication"
         android:allowBackup="true"
@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Searchlist">
 
+        <activity
+            android:name="com.example.searchrecyclerviewexample.DetailsActivity"
+            android:exported="true"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

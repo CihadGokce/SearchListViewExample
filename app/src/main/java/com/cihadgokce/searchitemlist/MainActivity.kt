@@ -45,7 +45,7 @@ class MainActivity: BaseActivity() {
         recyclerview.setHasFixedSize(true)
 
         viewModel.satelliteList.observe(this, Observer {
-            adapter = SatelliteAdapter(it)
+            adapter = SatelliteAdapter(this,it)
             recyclerview.adapter = adapter
         })
 

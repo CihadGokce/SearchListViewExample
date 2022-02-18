@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 import androidx.lifecycle.viewModelScope
+import com.cihadgokce.searchitemlist.model.SatelliteFullDetail
 import com.cihadgokce.searchitemlist.model.SatelliteList
 import com.cihadgokce.searchitemlist.model.SatelliteListItem
 import kotlinx.coroutines.flow.collect
@@ -24,6 +25,7 @@ class MainViewModel @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineDispatcher) : BaseViewModel() {
 
     val satelliteList =MutableLiveData<ArrayList<SatelliteListItem>>(arrayListOf())
+    val satelliteDetail =MutableLiveData<SatelliteFullDetail>()
 
     fun getSatelliteList() {
         viewModelScope.launch {
@@ -35,6 +37,22 @@ class MainViewModel @Inject constructor(
                     is ResponseState.Success->{
                         satelliteList.value =  (it as ResponseState.Success<SatelliteList>).data.dataList
 
+                    }
+                }
+
+            }
+        }
+    }
+
+    fun getSatelliteDetail(id:Int) {
+        viewModelScope.launch {
+            repository.getSatelliteDetail(id).collect {
+                when(it){
+                    is ResponseState.Loading->{
+
+                    }
+                    is ResponseState.Success->{
+                        satelliteDetail.value =  (it as ResponseState.Success<SatelliteFullDetail>).data!!
                     }
                 }
 

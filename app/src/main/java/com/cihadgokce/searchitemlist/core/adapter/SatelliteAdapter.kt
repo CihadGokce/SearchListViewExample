@@ -18,13 +18,12 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class SatelliteAdapter(private var items: ArrayList<SatelliteListItem>) :
+class SatelliteAdapter( var mContext: Context,private var items: ArrayList<SatelliteListItem>) :
     RecyclerView.Adapter<SatelliteAdapter.ViewHolder>(), Filterable {
 
 
     var satelliteFilterList = ArrayList<SatelliteListItem>()
 
-    lateinit var mContext: Context
 
     init {
         satelliteFilterList = items
