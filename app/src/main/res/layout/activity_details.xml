@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:layout_margin="30dp">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:padding="30dp"
+        android:textStyle="bold"
+        style="@style/TextAppearance.Material3.BodyLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Satellite Name" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:padding="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="09.01.2012" />
+
+    <TextView
+        android:id="@+id/tv_height"
+        android:padding="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="height" />
+
+    <TextView
+        android:id="@+id/tv_cost"
+        android:padding="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="cost:8300000" />
+
+    <TextView
+        android:id="@+id/tv_position"
+        android:padding="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="position" />
+</LinearLayout>
