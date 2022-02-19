@@ -5,42 +5,52 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="30dp"
-    android:layout_margin="30dp">
+    android:layout_margin="30dp"
+    android:gravity="center">
 
     <TextView
         android:id="@+id/tv_name"
         android:padding="30dp"
         android:textStyle="bold"
-        style="@style/TextAppearance.Material3.BodyLarge"
+        android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Satellite Name" />
+        android:text="Satellite Name"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/tv_date"
-        android:padding="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="09.01.2012" />
+        android:text="09.01.2012"
+        android:paddingBottom="50dp"
+        android:gravity="center"/>
+
 
     <TextView
         android:id="@+id/tv_height"
-        android:padding="30dp"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="height" />
+        android:text="height"
+        android:gravity="center"/>
+
 
     <TextView
         android:id="@+id/tv_cost"
-        android:padding="30dp"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="cost:8300000" />
+        android:text="cost:8300000"
+        android:gravity="center"/>
+
 
     <TextView
         android:id="@+id/tv_position"
-        android:padding="30dp"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="position" />
+        android:text="position"
+        android:gravity="center"/>
+
 </LinearLayout>

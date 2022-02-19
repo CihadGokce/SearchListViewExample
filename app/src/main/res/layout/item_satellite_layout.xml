@@ -4,21 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    app:cardCornerRadius="15dp">
+    app:cardCornerRadius="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="12dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:weightSum="4">
+
 
         <ImageView
             android:id="@+id/icon"
             android:layout_weight="2"
-            android:layout_width="50px"
-            android:layout_height="50px"
+            android:layout_gravity="center"
+            android:saveEnabled="false"
+            android:layout_width="60px"
+            android:layout_height="60px"
             android:layout_margin="10px"
             android:src="@drawable/satellite_passive_icon" />
 

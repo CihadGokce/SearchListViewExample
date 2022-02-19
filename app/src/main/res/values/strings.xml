@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">searchlist</string>
+    <string name="satellite_detail_height_mass">&lt;Height/Mass:&gt;%1$s</string>
+    <string name="satellite_detail_cost">&lt;Cost:&gt;%1$s</string>
+    <string name="satellite_detail_last_position">&lt;Last Position:&gt; (%1$d,%2$d)</string>
+    <string name="warning">Uyarı</string>
+    <string name="active">Active</string>
+    <string name="passive">Passive</string>
+
+
 </resources>

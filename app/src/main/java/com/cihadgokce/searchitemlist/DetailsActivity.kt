@@ -1,14 +1,17 @@
 package com.example.searchrecyclerviewexample
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.cihadgokce.searchitemlist.MainViewModel
+import com.cihadgokce.searchitemlist.R
 import com.cihadgokce.searchitemlist.core.adapter.SatelliteAdapter
 import com.cihadgokce.searchitemlist.databinding.ActivityDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.notify
 
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
@@ -25,14 +28,24 @@ class DetailsActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        viewModel.getSatelliteDetail(id)
+            viewModel.getSatelliteDetail(id)
+
+
+
         viewModel.satelliteDetail.observe(this, Observer {
-            binding.tvCost.text = it.detail.costPerLaunch.toString()
-            binding.tvHeight.text = it.detail.firstFlight.toString()
-        }
+
+            var col1 = getString(R.string.satellite_detail_height_mass,it.detail.height.toString())
+            var col2 = getString(R.string.satellite_detail_cost,it.detail.costPerLaunch.toString())
+            var col3 = getString(R.string.satellite_detail_last_position,it.position.positions[0].posX,it.position.positions[0].posY)
+
+                binding.tvHeight.setText(it.detail.height.toString())
+                binding.tvCost.text = col2
+                binding.tvPosition.text = col3
+
+
+            }
         )
 
-        //    binding.detailCountryText.text = intent.extras!!.getString("passselectedcountry")!!
 
     }
 }

@@ -21,6 +21,7 @@ import java.nio.charset.Charset
 import javax.inject.Inject
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 
 
 class MainActivity: BaseActivity() {
@@ -43,7 +44,11 @@ class MainActivity: BaseActivity() {
         // Bu RecyclerView'ın kullanacağı LayoutManager'ı ayarla.
         recyclerview.layoutManager = LinearLayoutManager(this)
         recyclerview.setHasFixedSize(true)
-
+        recyclerview.apply {
+            var itemDecoration = DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
+            itemDecoration.setDrawable(getDrawable(R.drawable.divider)!!)
+            addItemDecoration(itemDecoration)
+        }
         viewModel.satelliteList.observe(this, Observer {
             adapter = SatelliteAdapter(this,it)
             recyclerview.adapter = adapter
