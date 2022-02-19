@@ -28,7 +28,7 @@ class DetailsActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-            viewModel.getSatelliteDetail(id)
+        viewModel.getSatelliteDetail(id)
 
 
 
