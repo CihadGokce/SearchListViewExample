@@ -13,6 +13,6 @@ data class Positions(
 data class PositionsList(
 
     var id: String? = null,
-    var positions: ArrayList<Positions> = arrayListOf()
+    var positions: List<Positions> = listOf()
 
 ) : BaseResponseModel()

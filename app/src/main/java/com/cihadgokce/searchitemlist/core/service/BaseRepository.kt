@@ -107,7 +107,7 @@ fun getSatelliteDetail(context: Context,id: Int): SatelliteFullDetail {
     } catch (e: JSONException) {
         e.printStackTrace()
     }
-   // satelDetail.list = getPositionDetail(context,id)
+    satelDetail.list = getPositionDetail(context,id)
     return satelDetail
 }
 
@@ -126,8 +126,8 @@ fun getPositionDetail(context: Context,id: Int): PositionsList {
             PositionsList::class.java
         )
 
-        val adapter: JsonAdapter<ArrayList<PositionsList>> =
-            moshi.adapter<ArrayList<PositionsList>>(type)
+        val adapter: JsonAdapter<List<PositionsList>> =
+            moshi.adapter<List<PositionsList>>(type)
         val satList: List<PositionsList> = adapter.fromJson(positionsArray)!!.toCollection(ArrayList())
 
         for (item in satList) {

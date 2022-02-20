@@ -8,5 +8,4 @@ interface SatelliteRepository {
 
     suspend fun getSatelliteList() : Flow<ResponseState<BaseResponseModel>>
     suspend fun getSatelliteDetail(id:Int) : Flow<ResponseState<BaseResponseModel>>
-
 }

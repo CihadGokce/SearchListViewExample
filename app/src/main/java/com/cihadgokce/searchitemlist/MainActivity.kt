@@ -2,10 +2,6 @@ package com.cihadgokce.searchitemlist
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -29,21 +25,8 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val progressBar = ProgressBar(this)
-        //setting height and width of progressBar
-        progressBar.layoutParams = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-
-        val layout = findViewById<RelativeLayout>(R.id.layout)
-        // Add ProgressBar to our layout
-        layout?.addView(progressBar)
-        progressBar.visibility = View.VISIBLE
         recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
-
         viewModel.getSatelliteList()
-
         // Bu RecyclerView'ın kullanacağı LayoutManager'ı ayarla.
         recyclerview.layoutManager = LinearLayoutManager(this)
         recyclerview.setHasFixedSize(true)
@@ -55,9 +38,12 @@ class MainActivity : BaseActivity() {
         viewModel.satelliteList.observe(this, Observer {
             adapter = SatelliteAdapter(this, it)
             recyclerview.adapter = adapter
-            progressBar.visibility = View.GONE
         })
-        
+
+        viewModel.isLoading.observe(this, Observer {
+            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
+
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
