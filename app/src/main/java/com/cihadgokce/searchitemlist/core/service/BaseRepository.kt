@@ -17,20 +17,18 @@ import org.json.JSONObject
 import retrofit2.HttpException
 import java.lang.reflect.Type
 
-// servis çağırımı tetiklendiği yer manipule ediliyor json gönderiliyor
-
 
 suspend fun <T> fetch(
     context: Context,
     dispatcher: CoroutineDispatcher,
-    detailId:Int = 0,
+    detailId: Int = 0,
     apiCall: suspend () -> T
 ): Flow<ResponseState<BaseResponseModel>> = flow {
     emit(ResponseState.Loading)
     if (NetworkHelper.isNetworkConnection(context)) {
-        if(detailId>0){
-            emit(ResponseState.Success(getSatelliteDetail(context,detailId)))
-        }else{
+        if (detailId > 0) {
+            emit(ResponseState.Success(getSatelliteDetail(context, detailId)))
+        } else {
             emit(ResponseState.Success(getSatelliteList(context)))
         }
 
@@ -52,11 +50,8 @@ suspend fun <T> fetch(
 fun getSatelliteList(context: Context): SatelliteList {
 
     try {
-        // JSON nesnemiz olduğu için nesneyi alıyoruz
-        //Burada JSON nesnesini döndüren bir Yöntemi çağırıyoruz.
 
         val obj = JSONObject(Utils(context).getJSONFromAssets("Satellite-list.Json")!!)
-        // getJSONArray kullanarak JSONArray adlı kullanıcıları getir
         val satellitesArray = obj.getJSONArray("satellites").toString()
 
         val moshi = Moshi.Builder().build()
@@ -79,12 +74,11 @@ fun getSatelliteList(context: Context): SatelliteList {
     return SatelliteList()
 }
 
-fun getSatelliteDetail(context: Context,id: Int): SatelliteFullDetail {
+fun getSatelliteDetail(context: Context, id: Int): SatelliteFullDetail {
     var satelDetail = SatelliteFullDetail()
 
     try {
         val obj = JSONObject(Utils(context).getJSONFromAssets("Satellite-detail.Json")!!)
-        // getJSONArray kullanarak JSONArray adlı kullanıcıları getir
         val satellitesArray = obj.getJSONArray("satelliteDetail").toString()
 
         val moshi = Moshi.Builder().build()
@@ -107,17 +101,16 @@ fun getSatelliteDetail(context: Context,id: Int): SatelliteFullDetail {
     } catch (e: JSONException) {
         e.printStackTrace()
     }
-    satelDetail.list = getPositionDetail(context,id)
+    satelDetail.list = getPositionDetail(context, id)
     return satelDetail
 }
 
-fun getPositionDetail(context: Context,id: Int): PositionsList {
+fun getPositionDetail(context: Context, id: Int): PositionsList {
 
     var position = PositionsList()
 
     try {
         val obj = JSONObject(Utils(context).getJSONFromAssets("Positions.Json")!!)
-        // getJSONArray kullanarak JSONArray adlı kullanıcıları getir
         val positionsArray = obj.getJSONArray("list").toString()
 
         val moshi = Moshi.Builder().build()
@@ -128,7 +121,8 @@ fun getPositionDetail(context: Context,id: Int): PositionsList {
 
         val adapter: JsonAdapter<List<PositionsList>> =
             moshi.adapter<List<PositionsList>>(type)
-        val satList: List<PositionsList> = adapter.fromJson(positionsArray)!!.toCollection(ArrayList())
+        val satList: List<PositionsList> =
+            adapter.fromJson(positionsArray)!!.toCollection(ArrayList())
 
         for (item in satList) {
 

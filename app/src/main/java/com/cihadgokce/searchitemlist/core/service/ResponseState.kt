@@ -1,9 +1,6 @@
 package com.cihadgokce.searchitemlist.core.service
 
 
-//herhangi bir servis çağırımı dönen cevaplar
-
-
 sealed class ResponseState<out T> {
 
     class Success<T>(val data: T) : ResponseState<T>()

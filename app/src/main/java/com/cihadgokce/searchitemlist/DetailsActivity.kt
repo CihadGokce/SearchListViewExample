@@ -1,4 +1,4 @@
-package com.example.searchrecyclerviewexample
+package com.cihadgokce.searchitemlist
 
 import android.os.Bundle
 import android.os.Handler
@@ -6,7 +6,6 @@ import android.os.Looper
 import androidx.activity.viewModels
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
-import com.cihadgokce.searchitemlist.MainViewModel
 import com.cihadgokce.searchitemlist.core.BaseActivity
 import com.cihadgokce.searchitemlist.core.extension.StringExtensions.convertDateFormat
 import com.cihadgokce.searchitemlist.databinding.ActivityDetailsBinding

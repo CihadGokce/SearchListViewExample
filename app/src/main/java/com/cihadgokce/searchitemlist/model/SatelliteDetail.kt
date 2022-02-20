@@ -1,6 +1,5 @@
 package com.cihadgokce.searchitemlist.model
 
-import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
