@@ -107,32 +107,32 @@ fun getSatelliteDetail(context: Context,id: Int): SatelliteFullDetail {
     } catch (e: JSONException) {
         e.printStackTrace()
     }
-    satelDetail.position = getPositionDetail(context,id)
+   // satelDetail.list = getPositionDetail(context,id)
     return satelDetail
 }
 
-fun getPositionDetail(context: Context,id: Int): Position {
+fun getPositionDetail(context: Context,id: Int): PositionsList {
 
-    var position = Position()
+    var position = PositionsList()
 
     try {
         val obj = JSONObject(Utils(context).getJSONFromAssets("Positions.Json")!!)
         // getJSONArray kullanarak JSONArray adlı kullanıcıları getir
-        val satellitesArray = obj.getJSONArray("list").toString()
+        val positionsArray = obj.getJSONArray("list").toString()
 
         val moshi = Moshi.Builder().build()
         val type: Type = Types.newParameterizedType(
             List::class.java,
-            Position::class.java
+            PositionsList::class.java
         )
 
-        val adapter: JsonAdapter<List<Position>> =
-            moshi.adapter<List<Position>>(type)
-        val satList: List<Position> = adapter.fromJson(satellitesArray)!!.toCollection(ArrayList())
+        val adapter: JsonAdapter<ArrayList<PositionsList>> =
+            moshi.adapter<ArrayList<PositionsList>>(type)
+        val satList: List<PositionsList> = adapter.fromJson(positionsArray)!!.toCollection(ArrayList())
 
         for (item in satList) {
 
-            if (item.id == id) {
+            if (item.id == id.toString()) {
                 position = item
                 break
             }

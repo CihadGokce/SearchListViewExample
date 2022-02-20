@@ -7,8 +7,8 @@ import com.squareup.moshi.JsonClass
 data class SatelliteDetail(
 
     var id: Int? = null,
-    var costPerLaunch: Int? = null,
-    var firstFlight: String? = null,
+    var cost_per_launch: Int? = null,
+    var first_flight: String? = null,
     var height: Int? = null,
     var mass: Int? = null
 
@@ -17,5 +17,7 @@ data class SatelliteDetail(
 @JsonClass(generateAdapter = true)
 data class SatelliteFullDetail(
     var detail: SatelliteDetail = SatelliteDetail(),
-    var position: Position = Position()
+    var list : PositionsList = PositionsList(),
+
 ) : BaseResponseModel()
+

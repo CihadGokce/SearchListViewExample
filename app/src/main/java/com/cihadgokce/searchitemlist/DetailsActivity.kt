@@ -1,27 +1,24 @@
 package com.example.searchrecyclerviewexample
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.cihadgokce.searchitemlist.MainViewModel
-import com.cihadgokce.searchitemlist.R
-import com.cihadgokce.searchitemlist.core.adapter.SatelliteAdapter
+import com.cihadgokce.searchitemlist.core.BaseActivity
+import com.cihadgokce.searchitemlist.core.extension.StringExtensions.convertDateFormat
 import com.cihadgokce.searchitemlist.databinding.ActivityDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.internal.notify
 
 @AndroidEntryPoint
-class DetailsActivity : AppCompatActivity() {
+class DetailsActivity : BaseActivity() {
 
     private val viewModel by viewModels<MainViewModel>()
-
     private lateinit var binding: ActivityDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val id = intent.extras!!.getInt("satelliteItemId")!!
+        val name = intent.extras!!.getString("satelliteItemName")!!
 
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
@@ -30,20 +27,24 @@ class DetailsActivity : AppCompatActivity() {
 
         viewModel.getSatelliteDetail(id)
 
-
-
         viewModel.satelliteDetail.observe(this, Observer {
+            binding.tvDate.text = it.detail.first_flight?.let { it1 -> convertDateFormat(it1) }
+            binding.tvName.text = name
+            binding.tvHeight.text = HtmlCompat.fromHtml(
+                "<b>WhatHeight/Mass:</b>${it.detail.height}",
+                HtmlCompat.FROM_HTML_MODE_COMPACT
+            )
+            binding.tvCost.text = HtmlCompat.fromHtml(
+                "<b>Cost:</b>${it.detail.cost_per_launch}",
+                HtmlCompat.FROM_HTML_MODE_COMPACT
+            )
+            binding.tvPosition.text =
+                HtmlCompat.fromHtml(
+                    "<b>Last Position:</b>($id,$id)",
+                    HtmlCompat.FROM_HTML_MODE_COMPACT
+                )
 
-            var col1 = getString(R.string.satellite_detail_height_mass,it.detail.height.toString())
-            var col2 = getString(R.string.satellite_detail_cost,it.detail.costPerLaunch.toString())
-            var col3 = getString(R.string.satellite_detail_last_position,it.position.positions[0].posX,it.position.positions[0].posY)
-
-                binding.tvHeight.setText(it.detail.height.toString())
-                binding.tvCost.text = col2
-                binding.tvPosition.text = col3
-
-
-            }
+        }
         )
 
 

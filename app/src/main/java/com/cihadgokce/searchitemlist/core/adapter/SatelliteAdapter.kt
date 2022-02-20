@@ -66,6 +66,8 @@ class SatelliteAdapter( var mContext: Context,private var items: ArrayList<Satel
             if(isEnabled){
                 val intent = Intent(mContext, DetailsActivity::class.java)
                 intent.putExtra ("satelliteItemId", satelliteFilterList[position].id)
+                intent.putExtra ("satelliteItemName", satelliteFilterList[position].name)
+
                 mContext.startActivity(intent)
             }
         }
