@@ -13,5 +13,4 @@ object StringExtensions {
         var outputDateStr: String = outputFormat.format(date)
         return outputDateStr
     }
-
 }

@@ -11,6 +11,7 @@ import com.cihadgokce.searchitemlist.core.extension.StringExtensions.convertDate
 import com.cihadgokce.searchitemlist.databinding.ActivityDetailsBinding
 import com.cihadgokce.searchitemlist.model.PositionsList
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.NumberFormat.getIntegerInstance
 
 @AndroidEntryPoint
 class DetailsActivity : BaseActivity() {
@@ -60,7 +61,7 @@ class DetailsActivity : BaseActivity() {
             if (positionData.positions.isNotEmpty()) {
                 binding.tvPosition.text =
                     HtmlCompat.fromHtml(
-                        "<b>Last Position:</b>(${positionData.positions[it].posX},${positionData.positions[it].posY})",
+                        "<b>Last Position: </b>(${positionData.positions[it].posX},${positionData.positions[it].posY})",
                         HtmlCompat.FROM_HTML_MODE_COMPACT
                     )
             }
@@ -70,11 +71,15 @@ class DetailsActivity : BaseActivity() {
             binding.tvDate.text = it.detail.first_flight?.let { it1 -> convertDateFormat(it1) }
             binding.tvName.text = name
             binding.tvHeight.text = HtmlCompat.fromHtml(
-                "<b>WhatHeight/Mass:</b>${it.detail.height}",
+                "<b>Height/Mass:</b>${it.detail.height}/${it.detail.mass}",
                 HtmlCompat.FROM_HTML_MODE_COMPACT
             )
+            ;
+
             binding.tvCost.text = HtmlCompat.fromHtml(
-                "<b>Cost:</b>${it.detail.cost_per_launch}",
+                "<b>Cost:</b>${getIntegerInstance().format(it.detail.cost_per_launch)
+                        .replace(",", ".")
+                }",
                 HtmlCompat.FROM_HTML_MODE_COMPACT
             )
         }
